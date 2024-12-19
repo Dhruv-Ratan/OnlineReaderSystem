@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewManager {
     public static class Review {
@@ -13,15 +14,24 @@ public class ReviewManager {
             this.reviewText = reviewText;
             this.rating = rating;
         }
+
+        @Override
+        public String toString() {
+            return "User: " + userName +
+                    "\nBook: " + bookTitle +
+                    "\nReview: " + reviewText +
+                    "\nRating: " + rating + "/5";
+        }
     }
 
     private List<Review> reviews;
+
     public ReviewManager() {
         reviews = new ArrayList<>();
     }
 
     public void addReview(String userName, String bookTitle, String reviewText, double rating) {
-        if (rating<0 || rating>5){
+        if (rating < 0 || rating > 5) {
             System.out.println("Rating must be between 0 and 5");
             return;
         }
@@ -30,13 +40,14 @@ public class ReviewManager {
     }
 
     public void displayReviews() {
-        if(reviews.isEmpty()){
+        if (reviews.isEmpty()) {
             System.out.println("No reviews found");
             return;
         }
         System.out.println("Reviews:");
-        for(Review r : reviews){
+        for (Review r : reviews) {
             System.out.println(r);
+            System.out.println(); 
         }
     }
 }
